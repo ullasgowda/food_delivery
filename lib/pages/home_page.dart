@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:food_delivery/components/custom_appbar.dart';
 import 'package:food_delivery/components/custom_description_box.dart';
