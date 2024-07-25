@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/auth/auth.dart';
 import 'package:food_delivery/components/custom_drawer_tile.dart';
-import 'package:food_delivery/pages/login_page.dart';
 import 'package:food_delivery/pages/settings_page.dart';
+import 'package:food_delivery/services/auth/auth.dart';
+import 'package:food_delivery/services/auth/auth_service.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
+
+  void logout() async {
+    final authService = AuthService();
+    authService.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +52,7 @@ class CustomDrawer extends StatelessWidget {
               title: "L O G O U T",
               icon: Icons.logout,
               onTap: () {
+                logout();
                 Navigator.pop(context);
                 Navigator.push(
                   context,

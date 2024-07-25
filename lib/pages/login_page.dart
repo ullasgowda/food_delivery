@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/components/custom_button.dart';
 import 'package:food_delivery/components/custom_text_field.dart';
 import 'package:food_delivery/pages/home_page.dart';
+import 'package:food_delivery/services/auth/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
@@ -18,13 +19,25 @@ class _LoginPageState extends State<LoginPage> {
 
   void login() {
     // backend
+    final authService = AuthService();
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HomePage(),
-      ),
-    );
+    try {
+      authService.signUpWithEmailPassword(
+          emailController.text, passwordController.text);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+      );
+    } catch (e) {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: Text(e.toString()),
+              ));
+    }
   }
 
   @override
