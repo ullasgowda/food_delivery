@@ -17,12 +17,11 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  void login() {
+  void login() async {
     // backend
     final authService = AuthService();
-
     try {
-      authService.signUpWithEmailPassword(
+      await authService.signInWithEmailPassword(
           emailController.text, passwordController.text);
 
       Navigator.push(
